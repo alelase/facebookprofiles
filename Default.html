@@ -1,0 +1,96 @@
+<!DOCTYPE html>     
+<head>
+    <title>Alejandro - Angular Service</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js'></script>
+    <script type='text/javascript' src='js/profiles.js'></script>
+
+ 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" > 
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" > 
+</head>
+<style>
+.container {
+    max-width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: lightblue;
+}
+    .img-circle {
+  border-radius: 50%;
+  width:80px; height:80px;
+        margin-bottom: 10px;
+}
+    
+    .spanbold
+{
+ margin-left: 20px;
+ font-size: 20px;
+color: #333;
+}
+    
+</style>
+<body ng-app="ProfileApp" data-ng-controller="ProfileCtrl">
+<form id="form1">
+
+<div class="container">
+  <h1>Angular $http best practice use</h1>
+  <p>Creation Date: March 03, 2016</p>          
+</div>
+
+	<div class="container">
+	<p>
+	<div class="row">
+	
+	<div class="col-sm-3 col-md-3 text-center input-group-lg">
+      <select class="form-control"  ng-options="profile.id as profile.full for profile in profiles"
+              ng-model="selectedProfileId" ng-change="selectProfile()">
+			<option value="">Select Profile</option>
+          
+			</select>
+
+	</div>
+    <div class="col-sm-3 col-md-3 text-center input-group-lg">
+			<input ng-model="selectedProfile.name" type="text" placeholder="Profile Name"  class="form-control" />
+    </div>
+	
+	<div class="col-sm-3 col-md-3 text-center input-group-lg">
+			<input ng-model="selectedProfile.bio" type="text" placeholder="Bio"  class="form-control" />
+    </div>
+	<input id="fbprof" type="hidden">
+
+	<div class="col-sm-2 col-md-2 text-center input-group-lg">
+	<input type="button" style="color:white; background-color:#3969a9;" value="Create" class="form-control"  
+           ng-click="createProfile()" />
+	</div>
+	
+	</div>
+	
+	
+
+	<p>
+</div>
+	
+<div class="container marketing" style="padding-top:30px; " >
+
+
+  <div class="row" style="color:#fbfffa;">
+
+	<div class="col-md-4 text-center"  style="background-color:white; margin:12px; padding:12px; text-align:left;    max-width: 365px;"
+         ng-repeat="profile in createdProfiles | filter:filterText">
+      <img class="img-circle" ng-src="http://graph.facebook.com/{{profile.fbprof}}/picture">
+      <span class="spanbold">{{profile.name}}</span>
+      <p style="background-color:red; opacity:0.8;">{{profile.bio}}</p>
+    </div>
+
+  </div><!-- /.row -->
+
+</div><!-- /.container -->
+
+
+</form>
+</body>
+</html>
